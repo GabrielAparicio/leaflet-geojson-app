@@ -41,7 +41,8 @@ export default {
   data() {
     return {
       sampleContent: this.formInfo.numOfSamples,
-      radiusContent: this.formInfo.radius
+      radiusContent: this.formInfo.radius,
+      validator: /^[1-9]+[0-9]*$/
     };
   },
   props: {
@@ -68,14 +69,18 @@ export default {
       this.DELETE_COORDINATE({ id: this.formInfo.id });
     },
     simpleValidation() {
-      if (this.radiusContent === "" || this.sampleContent === "") {
-        return false;
-      }
-      return true;
+      return this.sampleValidated && this.radiusValidated;
     },
     ...mapActions([UPDATE_COORDINATE, DELETE_COORDINATE])
   },
-  computed: {}
+  computed: {
+    sampleValidated() {
+      return this.validator.test(this.sampleContent);
+    },
+    radiusValidated() {
+      return this.validator.test(this.radiusContent);
+    }
+  }
 };
 </script>
 
