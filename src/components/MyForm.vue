@@ -53,14 +53,25 @@ export default {
   },
   methods: {
     updateMarker() {
-      this.UPDATE_COORDINATE({
-        id: this.formInfo.id,
-        radius: parseInt(this.radiusContent),
-        numOfSamples: parseInt(this.sampleContent)
-      });
+      if (this.simpleValidation()) {
+        this.UPDATE_COORDINATE({
+          id: this.formInfo.id,
+          radius: parseInt(this.radiusContent),
+          numOfSamples: parseInt(this.sampleContent)
+        });
+      } else {
+        this.sampleContent = this.formInfo.numOfSamples;
+        this.radiusContent = this.formInfo.radius;
+      }
     },
     deleteMarker() {
       this.DELETE_COORDINATE({ id: this.formInfo.id });
+    },
+    simpleValidation() {
+      if (this.radiusContent === "" || this.sampleContent === "") {
+        return false;
+      }
+      return true;
     },
     ...mapActions([UPDATE_COORDINATE, DELETE_COORDINATE])
   },
