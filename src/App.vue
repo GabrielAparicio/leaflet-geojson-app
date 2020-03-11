@@ -15,4 +15,25 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.container {
+  height: 100vh;
+}
+
+.row {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.map-container {
+  height: 60%;
+}
+
+.view-class {
+  height: inherit;
+}
+
+.maps {
+  height: 100%;
+}
+</style>
