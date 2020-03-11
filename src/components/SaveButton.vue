@@ -3,14 +3,19 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "SaveButton",
   methods: {
     showData() {
-      console.log("This button is goint to show the list of markers");
+      const jsonMarkers = JSON.stringify({ markers: this.markers });
+      console.log(jsonMarkers);
     }
   },
-  computed: {}
+  computed: {
+    ...mapGetters(["markers"])
+  }
 };
 </script>
 
