@@ -14,6 +14,9 @@
 <script>
 import { LMap, LTileLayer, LGeoJson, LControlZoom } from "vue2-leaflet";
 import { geojsonData } from "../geojsonData";
+import { mapGetters, mapActions } from "vuex";
+import { ADD_COORDINATE } from "../store/mutationTypes";
+import { polygon } from "point-in-geopolygon";
 
 export default {
   name: "Home",
@@ -35,13 +38,25 @@ export default {
   methods: {
     addMarker({ latlng }) {
       const { lat, lng } = latlng;
-      console.log(lat, lng);
+      const isInside = polygon(this.polygon, [lng, lat]);
+
+      if (isInside) {
+        this.ADD_COORDINATE({
+          position: {
+            latitude: lat,
+            longitude: lng
+          }
+        });
+      }
     },
     setGeojsonBounds(e) {
       this.bounds = e.target.getBounds();
-    }
+    },
+    ...mapActions([ADD_COORDINATE])
   },
-  computed: {},
+  computed: {
+    ...mapGetters(["markers"])
+  },
   created() {
     this.geojson = geojsonData;
     this.polygon = this.geojson.features[0].geometry.coordinates;
