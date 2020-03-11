@@ -5986,6 +5986,11 @@ pnp-webpack-plugin@^1.6.0:
   dependencies:
     ts-pnp "^1.1.6"
 
+point-in-geopolygon@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/point-in-geopolygon/-/point-in-geopolygon-1.0.1.tgz#22711b0829dae2aa57c9393f330dbffe311f6fdd"
+  integrity sha1-InEbCCna4qpXyTk/Mw2//jEfb90=
+
 popper.js@^1.16.1:
   version "1.16.1"
   resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.1.tgz#2a223cb3dc7b6213d740e40372be40de43e65b1b"
