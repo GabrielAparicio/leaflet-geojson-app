@@ -7,6 +7,7 @@
   >
     <l-tile-layer :url="url"></l-tile-layer>
     <l-control-zoom position="bottomright"></l-control-zoom>
+    <MyMarker v-for="marker of markers" :key="marker.id" :marker="marker" />
     <l-geo-json :geojson="geojson" @add="setGeojsonBounds"></l-geo-json>
   </l-map>
 </template>
@@ -17,6 +18,7 @@ import { geojsonData } from "../geojsonData";
 import { mapGetters, mapActions } from "vuex";
 import { ADD_COORDINATE } from "../store/mutationTypes";
 import { polygon } from "point-in-geopolygon";
+import MyMarker from "./MyMarker.vue";
 
 export default {
   name: "Home",
@@ -24,7 +26,8 @@ export default {
     LMap,
     LTileLayer,
     LGeoJson,
-    LControlZoom
+    LControlZoom,
+    MyMarker
   },
   data() {
     return {
